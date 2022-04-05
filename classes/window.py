@@ -78,12 +78,12 @@ class Window:
         self.drawspace.draw_mirrors()
         self.drawspace.draw_light_destination()
         for button in self.settings_mode_buttons:
-            self.screen.blit(button.down_surface, button.pos)
-        pg.display.flip()
+            button.is_up = False
         last_tick = time.time()
-        while time.time() - last_tick < 0.01:
+        while time.time() - last_tick < 0.05:
             pass
         for button in self.settings_mode_buttons:
+            button.is_up = True
             self.screen.blit(button.up_surface, button.pos)
         pg.display.flip()
         self.experiment.turn_settings()
@@ -94,12 +94,12 @@ class Window:
         """
         self.screen.fill(self.drawspace.bg_color)
         for button in self.exp_mode_buttons:
-            self.screen.blit(button.down_surface, button.pos)
-        pg.display.flip()
+            button.is_up = False
         last_tick = time.time()
-        while time.time() - last_tick < 0.01:
+        while time.time() - last_tick < 0.05:
             pass
         for button in self.exp_mode_buttons:
+            button.is_up = True
             self.screen.blit(button.up_surface, button.pos)
         pg.display.flip()
         self.experiment.turn_settings()
