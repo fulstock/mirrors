@@ -2,6 +2,7 @@ import pygame as pg
 import easygui
 
 import os
+import time
 
 from classes.button import Button
 from classes.drawspace import DrawSpace
@@ -77,6 +78,12 @@ class Window:
         self.drawspace.draw_mirrors()
         self.drawspace.draw_light_destination()
         for button in self.settings_mode_buttons:
+            self.screen.blit(button.down_surface, button.pos)
+        pg.display.flip()
+        last_tick = time.time()
+        while time.time() - last_tick < 0.01:
+            pass
+        for button in self.settings_mode_buttons:
             self.screen.blit(button.up_surface, button.pos)
         pg.display.flip()
         self.experiment.turn_settings()
@@ -86,6 +93,12 @@ class Window:
             Выключение режима настроек.
         """
         self.screen.fill(self.drawspace.bg_color)
+        for button in self.exp_mode_buttons:
+            self.screen.blit(button.down_surface, button.pos)
+        pg.display.flip()
+        last_tick = time.time()
+        while time.time() - last_tick < 0.01:
+            pass
         for button in self.exp_mode_buttons:
             self.screen.blit(button.up_surface, button.pos)
         pg.display.flip()
