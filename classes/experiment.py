@@ -58,11 +58,11 @@ class Experiment:
         while self.running:
 
             if self.settings_mode: 
-                self.settings(window) # Режим настроек
+                self.settings_mode(window) # Режим настроек
             else:
-                self.main(window) # Основной режим программы
+                self.exp_mode(window) # Основной режим программы
 
-    def main(self, window):
+    def exp_mode(self, window):
         """
             Основной режим программы. Здесь расположено меню загрузки, сохранения,
                 а также запускается сам эксперимент.
@@ -141,7 +141,7 @@ class Experiment:
                         button.is_up = False
                 self.running = self.run_exp(window) # Запуск самого эксперимента
 
-    def settings(self, window):
+    def settings_mode(self, window):
         """
             Режим настроек. Сюда включается режим рисования новой конфигурации
                 зеркал и всех остальных параметров эксперимента.
